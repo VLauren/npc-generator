@@ -1,5 +1,16 @@
-# Prerequisites
-*.d
+# ============================================
+# C++ BUILD ARTIFACTS
+# ============================================
+
+# Build directories
+build/
+build-*/
+cmake-build-*/
+out/
+Debug/
+Release/
+x64/
+x86/
 
 # Compiled Object files
 *.slo
@@ -11,20 +22,10 @@
 *.gch
 *.pch
 
-# Linker files
-*.ilk
-
-# Debugger Files
-*.pdb
-
 # Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
 
 # Compiled Static libraries
 *.lai
@@ -36,6 +37,104 @@
 *.exe
 *.out
 *.app
+qthello
+npc-generator
 
-# debug information files
-*.dwo
+# ============================================
+# CMAKE
+# ============================================
+
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+CMakeUserPresets.json
+
+# ============================================
+# QT SPECIFIC
+# ============================================
+
+# Qt Creator
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+Makefile*
+*build-*
+*.qm
+.prl
+
+# Qt Creator CMake
+CMakeLists.txt.user*
+.qtc_clangd/
+
+# Qt generated files
+*.autosave
+
+# ============================================
+# IDE / EDITOR
+# ============================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Visual Studio
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# CLion
+.idea/
+*.iml
+
+# nvim/vim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# ============================================
+# OS SPECIFIC
+# ============================================
+
+# Linux
+*~
+.nfs*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+
+# ============================================
+# PROJECT SPECIFIC
+# ============================================
+
+*.json
+*.csv
+*.txt
