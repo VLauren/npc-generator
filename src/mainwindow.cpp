@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
 
     QVBoxLayout* layout = new QVBoxLayout(this);
 
-    QLabel* title = new QLabel("Generator de NPC", this);
+    QLabel* title = new QLabel("Generador de NPC", this);
     title->setAlignment(Qt::AlignCenter);
     QFont titleFont = title->font();
     titleFont.setPointSize(16);
@@ -21,12 +21,58 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
     layout->addWidget(title);
     layout->addSpacing(20);
 
-    QLabel* placeholder = new QLabel("Pulsa el boton para generar", this);
-    placeholder->setAlignment(Qt::AlignCenter);
-    layout->addWidget(placeholder);
+    // helper lambda to create a row
+    auto createRow = [this](const QString& labelText, QLabel*& valueLabel) -> QHBoxLayout*
+    {
+        QHBoxLayout* row = new QHBoxLayout();
+        QLabel *name = new QLabel(labelText + ":", this);
+        name->setMinimumWidth(100);
+        valueLabel = new QLabel("???", this);
+        row->addWidget(name);
+        row->addWidget(valueLabel, 1);
+        return row;
+    };
+
+    layout->addLayout(createRow("Genero", genderLabel));
+    layout->addLayout(createRow("Raza", raceLabel));
+    layout->addLayout(createRow("Edad", ageLabel));
+    layout->addLayout(createRow("Inteligencia", intelligenceLabel));
+    layout->addLayout(createRow("Clase social", socialClassLabel));
+    layout->addLayout(createRow("Apariencia", appearanceLabel));
+    layout->addLayout(createRow("Estilo", dressStyleLabel));
+    layout->addLayout(createRow("Trabajo", jobLabel));
+    layout->addLayout(createRow("Personalidad", personalityLabel));
 
     layout->addStretch();
 
     QPushButton* button = new QPushButton("Generar NPC", this);
     layout->addWidget(button);
+
+    // ------------------------
+
+    NPCData data;
+    data.gender = "Hombre";
+    data.race = "Humano";
+    data.age = "Adulto";
+    data.intelligence = "Normal";
+    data.socialClass = "Clase media";
+    data.appearance = "Atletica";
+    data.dressStyle = "Elegante";
+    data.job = "Panadero";
+    data.personality = "Leal, Valuente, Honesto, Curioso";
+
+    displayNPC(data);
+}
+
+void MainWindow::displayNPC(const NPCData& data)
+{
+    genderLabel->setText(data.gender);
+    raceLabel->setText(data.race);
+    ageLabel->setText(data.age);
+    intelligenceLabel->setText(data.intelligence);
+    socialClassLabel->setText(data.socialClass);
+    appearanceLabel->setText(data.appearance);
+    dressStyleLabel->setText(data.dressStyle);
+    jobLabel->setText(data.job);
+    personalityLabel->setText(data.personality);
 }
