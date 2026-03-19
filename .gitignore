@@ -56,6 +56,8 @@ CTestTestfile.cmake
 _deps/
 CMakeUserPresets.json
 
+.cache/
+
 # ============================================
 # QT SPECIFIC
 # ============================================
@@ -76,6 +78,7 @@ Makefile*
 *build-*
 *.qm
 .prl
+.qt/
 
 # Qt Creator CMake
 CMakeLists.txt.user*
