@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
 
     // ------------------------
 
-    NPCData data;
+    NpcData data;
     data.gender = "Hombre";
     data.race = "Humano";
     data.age = "Adulto";
@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
     displayNPC(data);
 }
 
-void MainWindow::displayNPC(const NPCData& data)
+void MainWindow::displayNPC(const NpcData& data)
 {
     genderLabel->setText(data.gender);
     raceLabel->setText(data.race);

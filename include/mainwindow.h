@@ -5,7 +5,7 @@
 
 class QLabel;
 
-struct NPCData
+struct NpcData
 {
     QString gender;
     QString race;
@@ -27,8 +27,8 @@ public:
 
 private:
     void setupUI();
-    void displayNPC(const NPCData& data);
-    NPCData generatePlaceholder();
+    void displayNPC(const NpcData& data);
+    NpcData generatePlaceholder();
     
     QLabel* genderLabel;
     QLabel* raceLabel;
