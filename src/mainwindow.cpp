@@ -1,7 +1,9 @@
 #include "mainwindow.h"
+#include "npcgenerator.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <qnamespace.h>
 
 MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
 {
@@ -26,8 +28,10 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
     {
         QHBoxLayout* row = new QHBoxLayout();
         QLabel *name = new QLabel(labelText + ":", this);
+        name->setTextInteractionFlags(Qt::TextSelectableByMouse);
         name->setMinimumWidth(100);
         valueLabel = new QLabel("???", this);
+        valueLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
         row->addWidget(name);
         row->addWidget(valueLabel, 1);
         return row;
@@ -50,18 +54,20 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
 
     // ------------------------
 
-    NpcData data;
-    data.gender = "Hombre";
-    data.race = "Humano";
-    data.age = "Adulto";
-    data.intelligence = "Normal";
-    data.socialClass = "Clase media";
-    data.appearance = "Atletica";
-    data.dressStyle = "Elegante";
-    data.job = "Panadero";
-    data.personality = "Leal, Valuente, Honesto, Curioso";
+    // NpcData data;
+    // data.gender = "Hombre";
+    // data.race = "Humano";
+    // data.age = "Adulto";
+    // data.intelligence = "Normal";
+    // data.socialClass = "Clase media";
+    // data.appearance = "Atletica";
+    // data.dressStyle = "Elegante";
+    // data.job = "Panadero";
+    // data.personality = "Leal, Valuente, Honesto, Curioso";
 
-    displayNPC(data);
+    NpcGenerator* generator = new NpcGenerator();
+
+    displayNPC(generator->generate());
 }
 
 void MainWindow::displayNPC(const NpcData& data)
