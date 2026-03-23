@@ -1,4 +1,5 @@
 #include "npcgenerator.h"
+#include <QRandomGenerator>
 
 NpcGenerator::NpcGenerator()
 {
@@ -54,7 +55,8 @@ NpcData NpcGenerator::generate() const
 
     auto pick = [](const QStringList& list) -> QString
     {
-        return list[0];
+        int random = QRandomGenerator::global()->bounded(list.size());
+        return list[random];
     };
 
     data.gender = pick(genders);

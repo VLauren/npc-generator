@@ -52,23 +52,17 @@ MainWindow::MainWindow(QWidget* parent) : QWidget(parent)
     QPushButton* button = new QPushButton("Generar NPC", this);
     layout->addWidget(button);
 
-    // ------------------------
+    connect(button, &QPushButton::clicked, this, &MainWindow::generateAndDisplay);
 
-    // NpcData data;
-    // data.gender = "Hombre";
-    // data.race = "Humano";
-    // data.age = "Adulto";
-    // data.intelligence = "Normal";
-    // data.socialClass = "Clase media";
-    // data.appearance = "Atletica";
-    // data.dressStyle = "Elegante";
-    // data.job = "Panadero";
-    // data.personality = "Leal, Valuente, Honesto, Curioso";
+    generateAndDisplay();
+}
 
+void MainWindow::generateAndDisplay()
+{
     NpcGenerator* generator = new NpcGenerator();
-
     displayNPC(generator->generate());
 }
+
 
 void MainWindow::displayNPC(const NpcData& data)
 {

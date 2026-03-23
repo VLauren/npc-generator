@@ -27,8 +27,8 @@ public:
 
 private:
     void setupUI();
+    void generateAndDisplay();
     void displayNPC(const NpcData& data);
-    NpcData generatePlaceholder();
     
     QLabel* genderLabel;
     QLabel* raceLabel;
