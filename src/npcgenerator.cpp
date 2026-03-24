@@ -47,7 +47,14 @@ NpcGenerator::NpcGenerator()
     jobs = 
     {
         "Cocinero",
-        "Cazador"
+        "Cazador",
+        "Abogado", "Actor", "Agente de sanidad alimentaria", "Agricultor"
+    };
+
+    illegalJobs = 
+    {
+        "Apostador",
+        "Lider de mafia"
     };
 
     personalities = 
@@ -93,7 +100,13 @@ NpcData NpcGenerator::generate() const
     data.socialClass = weightedPick(socialClasses);
     data.appearance = pick(appearances);
     data.dressStyle = pick(dressStyles);
-    data.job = pick(jobs);
+
+    float illegalChance = 
+        static_cast<float>(illegalJobs.size()) / (jobs.size() + illegalJobs.size());
+    if(QRandomGenerator::global()->generateDouble() < illegalChance)
+        data.job = pick(illegalJobs) + ", " + pick(jobs);
+    else
+        data.job = pick(jobs);
 
     QStringList pickedPersonalities;
     QStringList pool = personalities; // Create a copy

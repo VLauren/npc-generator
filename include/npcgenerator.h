@@ -24,6 +24,7 @@ private:
     QStringList appearances;
     QStringList dressStyles;
     QStringList jobs;
+    QStringList illegalJobs;
     QStringList personalities;
 };
 
