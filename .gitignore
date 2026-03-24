@@ -138,6 +138,10 @@ ehthumbs_vista.db
 # PROJECT SPECIFIC
 # ============================================
 
-*.json
-*.csv
-*.txt
+# *.json
+# *.csv
+# *.txt
+
+# local config
+local-config.cmake
+.env
