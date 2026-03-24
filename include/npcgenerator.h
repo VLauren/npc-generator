@@ -3,6 +3,12 @@
 
 #include "mainwindow.h"
 
+struct WeightedOption
+{
+    QString value;
+    float weight;
+};
+
 class NpcGenerator 
 {
 public:
@@ -10,15 +16,15 @@ public:
     NpcData generate() const;
 
 private:
-    QStringList genders;
-    QStringList races;
-    QStringList ages;
-    QStringList intelligences;
-    QStringList socialClasses;
-    QStringList appearances;
-    QStringList dressStyles;
-    QStringList jobs;
-    QStringList personalities;
+    QVector<WeightedOption> genders;
+    QVector<WeightedOption> races;
+    QVector<WeightedOption> ages;
+    QVector<WeightedOption> intelligences;
+    QVector<WeightedOption> socialClasses;
+    QVector<WeightedOption> appearances;
+    QVector<WeightedOption> dressStyles;
+    QVector<WeightedOption> jobs;
+    QVector<WeightedOption> personalities;
 };
 
 #endif

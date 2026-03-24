@@ -5,47 +5,56 @@ NpcGenerator::NpcGenerator()
 {
     genders = 
     {
-        "Hombre","Mujer"
+        {"Hombre", 0.5f},
+        {"Mujer", 0.5f}
     };
     
     races = 
     {
-        "Humano", "Elfo"
+        {"Humano", 0.9f},
+        {"Elfo", 0.1f}
     };
 
     ages = 
     {
-        "Adulto", "Niño"
+        {"Adulto", 0.5f},
+        {"Niño", 0.5f},
     };
 
     intelligences = 
     {
-        "Normal", "Inteligente"
+        {"Normal", 0.5f},
+        {"Inteligente", 0.5f},
     };
 
     socialClasses = 
     {
-        "Clase baja", "Clase media"
+        {"Clase baja", 0.5f},
+        {"Clase media", 0.5f},
     };
 
     appearances = 
     {
-        "Atractiva", "Pelo corto"
+        {"Atractiva", 0.5f},
+        {"Pelo corto", 0.5f},
     };
     
     dressStyles = 
     {
-        "Elegante", "Normal"
+        {"Elegante", 0.5f},
+        {"Normal", 0.5f},
     };
 
     jobs = 
     {
-        "Cocinero", "Cazador"
+        {"Cocinero", 0.5f},
+        {"Cazador", 0.5f},
     };
 
     personalities = 
     {
-        "Valiente", "Tímida"
+        {"Valiente", 0.5f},
+        {"Tímida", 0.5f},
     };
 }
 
@@ -53,10 +62,19 @@ NpcData NpcGenerator::generate() const
 {
     NpcData data;
 
-    auto pick = [](const QStringList& list) -> QString
+    auto pick = [](const QVector<WeightedOption>& options) -> QString
     {
-        int random = QRandomGenerator::global()->bounded(list.size());
-        return list[random];
+        float roll = QRandomGenerator::global()->generateDouble();
+
+        float cumulative = 0;
+        for(const auto &option : options)
+        {
+            cumulative += option.weight;
+            if(cumulative > roll)
+                return option.value;
+        }
+
+        return options.last().value;
     };
 
     data.gender = pick(genders);
