@@ -5,8 +5,7 @@ NpcGenerator::NpcGenerator()
 {
     genders = 
     {
-        {"Hombre", 0.5f},
-        {"Mujer", 0.5f}
+        "Hombre", "Mujer"
     };
     
     races = 
@@ -35,26 +34,28 @@ NpcGenerator::NpcGenerator()
 
     appearances = 
     {
-        {"Atractiva", 0.5f},
-        {"Pelo corto", 0.5f},
+        "Atractiva",
+        "Pelo corto"
     };
     
     dressStyles = 
     {
-        {"Elegante", 0.5f},
-        {"Normal", 0.5f},
+        "Elegante",
+        "Normal"
     };
 
     jobs = 
     {
-        {"Cocinero", 0.5f},
-        {"Cazador", 0.5f},
+        "Cocinero",
+        "Cazador"
     };
 
     personalities = 
     {
-        {"Valiente", 0.5f},
-        {"Tímida", 0.5f},
+        "Abierta", "Aburrida", "Acogedora", "Acomplejada", "Activa",
+        "Adicta", "Adorable", "Agresiva",
+        "Valiente",
+        "Tímida"
     };
 }
 
@@ -62,7 +63,15 @@ NpcData NpcGenerator::generate() const
 {
     NpcData data;
 
-    auto pick = [](const QVector<WeightedOption>& options) -> QString
+    // Pick random string from list method
+    auto pick = [](const QStringList& options) -> QString
+    {
+        int index = QRandomGenerator::global()->bounded(options.size());
+        return options[index];
+    };
+
+    // Pick random string from weighted list method
+    auto weightedPick = [](const QVector<WeightedOption>& options) -> QString
     {
         float roll = QRandomGenerator::global()->generateDouble();
 
@@ -78,14 +87,22 @@ NpcData NpcGenerator::generate() const
     };
 
     data.gender = pick(genders);
-    data.race = pick(races);
-    data.age = pick(ages);
-    data.intelligence = pick(intelligences);
-    data.socialClass = pick(socialClasses);
+    data.race = weightedPick(races);
+    data.age = weightedPick(ages);
+    data.intelligence = weightedPick(intelligences);
+    data.socialClass = weightedPick(socialClasses);
     data.appearance = pick(appearances);
     data.dressStyle = pick(dressStyles);
     data.job = pick(jobs);
-    data.personality = pick(personalities);
+
+    QStringList pickedPersonalities;
+    QStringList pool = personalities; // Create a copy
+    for (int i = 0; i < 4; i++)
+    {
+        int index =  QRandomGenerator::global()->bounded(pool.size());
+        pickedPersonalities.append(pool.takeAt(index));
+    }
+    data.personality = pickedPersonalities.join(", ");
 
     return data;
 }

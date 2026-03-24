@@ -16,15 +16,15 @@ public:
     NpcData generate() const;
 
 private:
-    QVector<WeightedOption> genders;
+    QStringList genders;
     QVector<WeightedOption> races;
     QVector<WeightedOption> ages;
     QVector<WeightedOption> intelligences;
     QVector<WeightedOption> socialClasses;
-    QVector<WeightedOption> appearances;
-    QVector<WeightedOption> dressStyles;
-    QVector<WeightedOption> jobs;
-    QVector<WeightedOption> personalities;
+    QStringList appearances;
+    QStringList dressStyles;
+    QStringList jobs;
+    QStringList personalities;
 };
 
 #endif
